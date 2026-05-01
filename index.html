@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theekha Mircha | Authentic Dhaba Experience</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <style>
+       /* Core Theme Variables */
+       :root {
+           --primary: #d32f2f; /* Spicy Red */
+           --bg-dark: #121212;
+           --text-light: #f5f5f5;
+           --accent: #ffb300; /* Mustard/Dhaba Yellow */
+       }
+       
+       body, html {
+           margin: 0;
+           padding: 0;
+           font-family: 'Helvetica Neue', Arial, sans-serif;
+           background-color: var(--bg-dark);
+           color: var(--text-light);
+           overflow-x: hidden;
+       }
+
+       /* Lenis Smooth Scroll System Requirements */
+       html.lenis { height: auto; }
+       .lenis.lenis-smooth { scroll-behavior: auto !important; }
+       .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+       .lenis.lenis-stopped { overflow: hidden; }
+       .lenis.lenis-scrolling iframe { pointer-events: none; }
+
+       /* Navigation */
+       header {
+           position: fixed;
+           top: 0; left: 0; width: 100%;
+           padding: 25px 50px;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           z-index: 100;
+           box-sizing: border-box;
+           background: rgba(18, 18, 18, 0.85);
+           backdrop-filter: blur(12px);
+           border-bottom: 1px solid rgba(255,255,255,0.05);
+       }
+       .logo { 
+           font-size: 2rem; 
+           font-weight: 900; 
+           color: var(--primary); 
+           text-transform: uppercase; 
+           letter-spacing: 2px;
+       }
+       .nav-links a { 
+           color: white; 
+           text-decoration: none; 
+           margin-left: 40px; 
+           font-weight: 500; 
+           font-size: 0.9rem;
+           text-transform: uppercase;
+           letter-spacing: 1px;
+           transition: color 0.3s ease; 
+       }
+       .nav-links a:hover { color: var(--accent); }
+
+       /* Hero Section */
+       .hero {
+           height: 100vh;
+           display: flex;
+           flex-direction: column;
+           justify-content: center;
+           align-items: center;
+           text-align: center;
+           position: relative;
+           overflow: hidden;
+       }
+       .hero h1 {
+           font-size: 7vw;
+           margin: 0;
+           line-height: 1;
+           font-weight: 900;
+           text-transform: uppercase;
+           /* Hardware acceleration for 120fps+ */
+           will-change: transform, opacity;
+       }
+       .hero p {
+           font-size: 1.5rem;
+           margin-top: 30px;
+           color: #cccccc;
+           max-width: 600px;
+           will-change: transform, opacity;
+       }
+       .ambient-glow {
+           position: absolute;
+           width: 150%;
+           height: 150%;
+           background: radial-gradient(circle, rgba(211,47,47,0.12) 0%, rgba(18,18,18,1) 50%);
+           z-index: -1;
+           will-change: transform;
+       }
+
+       /* Layout Sections */
+       .section {
+           padding: 120px 50px;
+           min-height: 80vh;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+       
+       /* Menu Grid */
+       .menu-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+           gap: 40px;
+           width: 100%;
+           max-width: 1300px;
+           margin-top: 60px;
+       }
+       .menu-item {
+           background: #1a1a1a;
+           border: 1px solid #2a2a2a;
+           border-radius: 12px;
+           padding: 40px;
+           transform: translateY(80px);
+           opacity: 0;
+           will-change: transform, opacity;
+           transition: border-color 0.4s ease, box-shadow 0.4s ease;
+       }
+       .menu-item:hover {
+           border-color: var(--primary);
+           box-shadow: 0 20px 40px rgba(211,47,47,0.15);
+       }
+       .menu-item h3 { 
+           color: var(--accent); 
+           font-size: 1.8rem; 
+           margin-top: 0;
+           margin-bottom: 15px;
+       }
+       .menu-item p {
+           color: #999;
+           line-height: 1.6;
+           margin: 0;
+       }
+       
+       /* Custom Scrollbar */
+       ::-webkit-scrollbar { width: 10px; }
+       ::-webkit-scrollbar-track { background: var(--bg-dark); }
+       ::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+       ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Theekha Mircha</div>
+    <div class="nav-links">
+        <a href="#about">The Heritage</a>
+        <a href="#menu">Dhaba Menu</a>
+        <a href="#contact">Locations</a>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="ambient-glow"></div>
+    <h1 class="hero-title">Unapologetically<br><span style="color: var(--primary);">Spicy.</span></h1>
+    <p class="hero-sub">The raw, authentic flavours of a traditional Indian highway Dhaba, refined for an unparalleled dining experience.</p>
+</div>
+
+<div class="section" id="about" style="background: #161616;">
+    <div style="max-width: 900px; text-align: center;">
+        <h2 class="about-title" style="font-size: 3.5rem; color: var(--text-light); margin-bottom: 30px;">Born on the Highway</h2>
+        <p class="about-text" style="font-size: 1.3rem; line-height: 1.8; color: #aaa;">
+            At Theekha Mircha, we don't just cook food; we craft experiences. Inspired by the legendary rustic kitchens of India, we bring you melt-in-your-mouth meats, hand-pounded exotic masalas, and the unforgettable aroma of our signature charcoal clay ovens.
+        </p>
+    </div>
+</div>
+
+<div class="section" id="menu">
+    <div style="width: 100%;">
+        <h2 class="menu-title" style="text-align: center; font-size: 3.5rem; color: var(--text-light);">Signature Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h3>Chicken Lahsuniya</h3>
+                <p>Juicy chicken bites cooked perfectly in a rich, moderately spicy garlic and onion-tomato gravy.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Mutton Rogan Josh</h3>
+                <p>Premium lamb slow-cooked to perfection with traditional Kashmiri spices and fragrant oils.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Desi Ghee Phulka</h3>
+                <p>Traditional flatbreads char-cooked over an open flame, generously brushed with pure desi ghee.</p>
+            </div>
+            <div class="menu-item">
+                <h3>Kulhad Lassi</h3>
+                <p>Thick, creamy, and bubbling with freshness. Served chilled in an authentic earthen pot.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. Initialize Lenis for hardware-synced smooth scrolling
+    // This calculates scroll momentum mathematically to match the monitor's frame rate
+    const lenis = new Lenis({
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+        smooth: true,
+        wheelMultiplier: 1,
+    });
+
+    // Request Animation Frame Loop (Runs at max monitor Hz)
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // 2. Register GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Sync Lenis scroll with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time)=>{
+      lenis.raf(time * 1000)
+    });
+    gsap.ticker.lagSmoothing(0);
+
+    // 3. High-Performance Entrance Animations
+    gsap.from(".hero-title", { 
+        y: 120, 
+        opacity: 0, 
+        duration: 1.5, 
+        ease: "power4.out", 
+        delay: 0.2 
+    });
+    
+    gsap.from(".hero-sub", { 
+        y: 50, 
+        opacity: 0, 
+        duration: 1.2, 
+        ease: "power3.out", 
+        delay: 0.6 
+    });
+    
+    // Parallax background effect tied to scroll
+    gsap.to(".ambient-glow", {
+        yPercent: 40,
+        ease: "none",
+        scrollTrigger: { 
+            trigger: ".hero", 
+            start: "top top", 
+            end: "bottom top", 
+            scrub: true 
+        }
+    });
+
+    // 4. Scroll-Triggered Reveal Animations
+    gsap.from(".about-title, .about-text", {
+        scrollTrigger: { 
+            trigger: "#about", 
+            start: "top 75%" 
+        },
+        y: 60, 
+        opacity: 0, 
+        duration: 1.2, 
+        stagger: 0.2,
+        ease: "power3.out"
+    });
+
+    gsap.from(".menu-title", {
+        scrollTrigger: { trigger: "#menu", start: "top 80%" },
+        y: 40, opacity: 0, duration: 1, ease: "power3.out"
+    });
+
+    // Spring-based stagger for menu items
+    gsap.to(".menu-item", {
+        scrollTrigger: { 
+            trigger: "#menu", 
+            start: "top 70%" 
+        },
+        y: 0, 
+        opacity: 1, 
+        duration: 1, 
+        stagger: 0.15, 
+        ease: "back.out(1.5)"
+    });
+</script>
+</body>
+</html>
